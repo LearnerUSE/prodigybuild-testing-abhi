@@ -297,7 +297,97 @@ def binary_search_by_recursion(
         return binary_search_by_recursion(sorted_collection, item, midpoint + 1, right)
 
 
+def test_bisect_left():
+    assert bisect_left([0, 5, 7, 10, 15], 0) == 0
+    assert bisect_left([0, 5, 7, 10, 15], 6) == 2
+    assert bisect_left([0, 5, 7, 10, 15], 20) == 5
+    assert bisect_left([0, 5, 7, 10, 15], 15, 1, 3) == 3
+    assert bisect_left([0, 5, 7, 10, 15], 6, 2) == 2
+
+
+def test_bisect_right():
+    assert bisect_right([0, 5, 7, 10, 15], 0) == 1
+    assert bisect_right([0, 5, 7, 10, 15], 15) == 5
+    assert bisect_right([0, 5, 7, 10, 15], 6) == 2
+    assert bisect_right([0, 5, 7, 10, 15], 15, 1, 3) == 3
+    assert bisect_right([0, 5, 7, 10, 15], 6, 2) == 2
+
+
+def test_insort_left():
+    sorted_collection = [0, 5, 7, 10, 15]
+    insort_left(sorted_collection, 6)
+    assert sorted_collection == [0, 5, 6, 7, 10, 15]
+
+    sorted_collection = [(0, 0), (5, 5), (7, 7), (10, 10), (15, 15)]
+    item = (5, 5)
+    insort_left(sorted_collection, item)
+    assert sorted_collection == [(0, 0), (5, 5), (5, 5), (7, 7), (10, 10), (15, 15)]
+    assert item is sorted_collection[1]
+    assert item is not sorted_collection[2]
+
+    sorted_collection = [0, 5, 7, 10, 15]
+    insort_left(sorted_collection, 20)
+    assert sorted_collection == [0, 5, 7, 10, 15, 20]
+
+    sorted_collection = [0, 5, 7, 10, 15]
+    insort_left(sorted_collection, 15, 1, 3)
+    assert sorted_collection == [0, 5, 7, 15, 10, 15]
+
+
+def test_insort_right():
+    sorted_collection = [0, 5, 7, 10, 15]
+    insort_right(sorted_collection, 6)
+    assert sorted_collection == [0, 5, 6, 7, 10, 15]
+
+    sorted_collection = [(0, 0), (5, 5), (7, 7), (10, 10), (15, 15)]
+    item = (5, 5)
+    insort_right(sorted_collection, item)
+    assert sorted_collection == [(0, 0), (5, 5), (5, 5), (7, 7), (10, 10), (15, 15)]
+    assert item is not sorted_collection[1]
+    assert item is sorted_collection[2]
+
+    sorted_collection = [0, 5, 7, 10, 15]
+    insort_right(sorted_collection, 20)
+    assert sorted_collection == [0, 5, 7, 10, 15, 20]
+
+    sorted_collection = [0, 5, 7, 10, 15]
+    insort_right(sorted_collection, 15, 1, 3)
+    assert sorted_collection == [0, 5, 7, 15, 10, 15]
+
+
+def test_binary_search():
+    assert binary_search([0, 5, 7, 10, 15], 0) == 0
+    assert binary_search([0, 5, 7, 10, 15], 15) == 4
+    assert binary_search([0, 5, 7, 10, 15], 5) == 1
+    assert binary_search([0, 5, 7, 10, 15], 6) is None
+
+
+def test_binary_search_std_lib():
+    assert binary_search_std_lib([0, 5, 7, 10, 15], 0) == 0
+    assert binary_search_std_lib([0, 5, 7, 10, 15], 15) == 4
+    assert binary_search_std_lib([0, 5, 7, 10, 15], 5) == 1
+    assert binary_search_std_lib([0, 5, 7, 10, 15], 6) is None
+
+
+def test_binary_search_by_recursion():
+    assert binary_search_by_recursion([0, 5, 7, 10, 15], 0, 0, 4) == 0
+    assert binary_search_by_recursion([0, 5, 7, 10, 15], 15, 0, 4) == 4
+    assert binary_search_by_recursion([0, 5, 7, 10, 15], 5, 0, 4) == 1
+    assert binary_search_by_recursion([0, 5, 7, 10, 15], 6, 0, 4) is None
+
+
+def test():
+    test_bisect_left()
+    test_bisect_right()
+    test_insort_left()
+    test_insort_right()
+    test_binary_search()
+    test_binary_search_std_lib()
+    test_binary_search_by_recursion()
+
+
 if __name__ == "__main__":
+    test()
     user_input = input("Enter numbers separated by comma:\n").strip()
     collection = sorted(int(item) for item in user_input.split(","))
     target = int(input("Enter a single number to be found in the list:\n"))
