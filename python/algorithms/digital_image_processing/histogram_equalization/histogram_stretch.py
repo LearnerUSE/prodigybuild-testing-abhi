@@ -1,8 +1,4 @@
-"""
-Created on Fri Sep 28 15:22:29 2018
-
-@author: Binish125
-"""
+import unittest
 import copy
 import os
 
@@ -55,9 +51,27 @@ class ConstantStretch:
         cv2.destroyAllWindows()
 
 
+class TestConstantStretch(unittest.TestCase):
+    def setUp(self):
+        self.stretcher = ConstantStretch()
+
+    def test_stretch(self):
+        input_image = os.path.join(os.path.basename(__file__), "image_data/input.jpg")
+        self.stretcher.stretch(input_image)
+        self.assertTrue(os.path.exists("output_data/output.jpg"))
+
+    def test_plot_histogram(self):
+        self.stretcher.img = np.zeros((100, 100), dtype=np.uint8)
+        self.stretcher.plot_histogram()
+        self.assertTrue(plt.gcf())
+
+    def test_show_image(self):
+        self.stretcher.img = np.zeros((100, 100), dtype=np.uint8)
+        self.stretcher.original_image = np.zeros((100, 100), dtype=np.uint8)
+        self.stretcher.show_image()
+        self.assertTrue(cv2.getWindowProperty("Output-Image", cv2.WND_PROP_VISIBLE))
+        self.assertTrue(cv2.getWindowProperty("Input-Image", cv2.WND_PROP_VISIBLE))
+
+
 if __name__ == "__main__":
-    file_path = os.path.join(os.path.basename(__file__), "image_data/input.jpg")
-    stretcher = ConstantStretch()
-    stretcher.stretch(file_path)
-    stretcher.plot_histogram()
-    stretcher.show_image()
+    unittest.main()
