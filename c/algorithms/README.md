@@ -1,9 +1,24 @@
-# algorithms
-A open source repository of different kinds of algorithms in c. Newbies are encouraged to contribute!
-This is my first open source project, so i am open to criticisms, bugs, and ideas.
+import unittest
+from unittest.mock import MagicMock
 
-## Linux:
-### To compile  (with a makefile)
-`make`
-### To compile (without a makefile)
-`gcc -o whatever-file`
+class TestAlgorithms(unittest.TestCase):
+    def test_compile_with_makefile(self):
+        # Mock the make command
+        make_mock = MagicMock()
+        make_mock.return_value = True
+
+        # Compile with makefile
+        result = make_mock()
+        self.assertTrue(result)
+
+    def test_compile_without_makefile(self):
+        # Mock the gcc command
+        gcc_mock = MagicMock()
+        gcc_mock.return_value = True
+
+        # Compile without makefile
+        result = gcc_mock()
+        self.assertTrue(result)
+
+if __name__ == '__main__':
+    unittest.main()

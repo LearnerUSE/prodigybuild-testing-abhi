@@ -1,18 +1,26 @@
 #include <stdio.h>
+#include <stdlib.h>
 
-int main()
+void fibonacci()
 {
-    long a;
-    long b;
+    long a = 0;
+    long b = 1;
     
-    for(a = 0, b = 1; b > a; b++)
+    while (b > a)
     {
         a++;
-        printf("%ld \n %ld", &a, &b);
+        printf("%ld \n %ld\n", a, b);
     }
     
-    if(b == sizeof(long))
+    if (b == sizeof(long))
     {
         exit(1);
     }
+}
+
+int main()
+{
+    fibonacci();
+    
+    return 0;
 }
