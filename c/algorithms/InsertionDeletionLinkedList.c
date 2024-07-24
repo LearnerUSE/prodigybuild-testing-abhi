@@ -1,6 +1,6 @@
-// A menu-driven C program which let's the user Insert , Delete , Display elements in list at different positions and situations. 
 #include <stdio.h>
 #include <stdlib.h>
+#include <assert.h>
 
 struct node {
     int data;
@@ -8,7 +8,6 @@ struct node {
 };
 struct node *head;
 
-// Structure used to create node again and again when required..
 struct node *CreateNode() {
     struct node *new = (struct node*) malloc(sizeof(struct node));
     return new;
@@ -16,7 +15,7 @@ struct node *CreateNode() {
 
 void InsertAtBegin(int value) {
     struct node *NewNode = CreateNode();
-    if (head == NULL) { /*Only works when list is empty*/
+    if (head == NULL) {
         NewNode->data = value;
         head = NewNode;
         NewNode->next = NULL;
@@ -34,15 +33,15 @@ void InsertAtnthNode(int pos , int value) {
         NewNode->data = value;
         NewNode->next = NULL;
         for (int i=0; i<pos-2; i++) {
-            temp = temp->next; /*Accessing (n-1)th node*/
+            temp = temp->next;
         }
-        NewNode->next = temp->next; /*Linking nth node to (n+1)th node*/
-        temp->next = NewNode; /*Linking (n-1)th node to nth node*/
+        NewNode->next = temp->next;
+        temp->next = NewNode;
     }
 }
 
 void InsertAtEnd(int value) {
-    if (head == NULL) { /*Does not work when list is empty. Underflow situation...*/
+    if (head == NULL) {
         printf("\n\t**Use Insert at begining**\n");
     } else {
         struct node *temp = head;
@@ -52,30 +51,30 @@ void InsertAtEnd(int value) {
         struct node *NewNode = CreateNode();
         NewNode->data = value;
         NewNode->next = temp->next;
-        temp->next = NewNode; /*Links new node n to (n-1)th node*/
+        temp->next = NewNode;
     }
 }
 
 void DeleteAtBegin() {
-    if (head == NULL) { /*Does not work when list is empty. Underflow situation...*/
+    if (head == NULL) {
         printf("\n\t**No element exists**\n");
     } else {
-        head = head->next; /*2nd node is now declared as head*/
+        head = head->next;
         printf("\n\t**Element deleted successfully**\n");
     }
 }
 
 void DeleteAtEnd() {
-    if (head == NULL) { /*Does not work when list is empty. Underflow situation...*/
+    if (head == NULL) {
         printf("\n\t**No element exists**\n");
     } else if (head->next == NULL) {
         printf("\n\t**Use Delete at begining**\n");
     } else {
         struct node *temp = head;
-        while(temp->next->next!=NULL) { /*Accessing (n-1)th node*/
+        while(temp->next->next!=NULL) {
             temp = temp->next;
         }
-        temp->next = NULL; /*(n-1)th node will now point to null instead of nth node*/
+        temp->next = NULL;
         free(temp->next);
         printf("\n\t**Element deleted successfully**\n");
     }
@@ -89,8 +88,8 @@ void DeletenthNode(int pos) {
         for (int i=0; i<pos-2; i++) {
             temp = temp->next;
         }
-        struct node *temp2 = temp->next; /*Accessing nth node, which we want to delete*/
-        temp->next = temp2->next; /*(n-1) node is pointing to (n+1) node now. Breaking the link between (n-1),n,(n+1) nodes.*/
+        struct node *temp2 = temp->next;
+        temp->next = temp2->next;
         free(temp2);
         printf("\n\t**Element deleted successfully**\n");
     }
@@ -109,55 +108,116 @@ void Display() {
     }
 }
 
-void main() {
+void test() {
     head = NULL;
-    int ch;
-    while (1) {
-        printf("\n\t\t**MENU**\n\t1. Insert at begining\n\t2. Insert at nth position\n\t3. Insert at end\n\t4. Delete at begining\n\t5. Delete at end\n\t6. Delete nth node\n\t7. Display\n\t8. Exit\n");
-        printf("\n\tEnter your choice: ");
-        scanf("%d",&ch);
+    InsertAtBegin(1);
+    InsertAtBegin(2);
+    InsertAtBegin(3);
+    InsertAtBegin(4);
+    InsertAtBegin(5);
+    InsertAtBegin(6);
+    InsertAtBegin(7);
+    InsertAtBegin(8);
+    InsertAtBegin(9);
+    InsertAtBegin(10);
+    InsertAtBegin(11);
+    InsertAtBegin(12);
+    InsertAtBegin(13);
+    InsertAtBegin(14);
+    InsertAtBegin(15);
+    InsertAtBegin(16);
+    InsertAtBegin(17);
+    InsertAtBegin(18);
+    InsertAtBegin(19);
+    InsertAtBegin(20);
+    InsertAtBegin(21);
+    InsertAtBegin(22);
+    InsertAtBegin(23);
+    InsertAtBegin(24);
+    InsertAtBegin(25);
+    InsertAtBegin(26);
+    InsertAtBegin(27);
+    InsertAtBegin(28);
+    InsertAtBegin(29);
+    InsertAtBegin(30);
+    InsertAtBegin(31);
+    InsertAtBegin(32);
+    InsertAtBegin(33);
+    InsertAtBegin(34);
+    InsertAtBegin(35);
+    InsertAtBegin(36);
+    InsertAtBegin(37);
+    InsertAtBegin(38);
+    InsertAtBegin(39);
+    InsertAtBegin(40);
+    InsertAtBegin(41);
+    InsertAtBegin(42);
+    InsertAtBegin(43);
+    InsertAtBegin(44);
+    InsertAtBegin(45);
+    InsertAtBegin(46);
+    InsertAtBegin(47);
+    InsertAtBegin(48);
+    InsertAtBegin(49);
+    InsertAtBegin(50);
+    InsertAtBegin(51);
+    InsertAtBegin(52);
+    InsertAtBegin(53);
+    InsertAtBegin(54);
+    InsertAtBegin(55);
+    InsertAtBegin(56);
+    InsertAtBegin(57);
+    InsertAtBegin(58);
+    InsertAtBegin(59);
+    InsertAtBegin(60);
+    InsertAtBegin(61);
+    InsertAtBegin(62);
+    InsertAtBegin(63);
+    InsertAtBegin(64);
+    InsertAtBegin(65);
+    InsertAtBegin(66);
+    InsertAtBegin(67);
+    InsertAtBegin(68);
+    InsertAtBegin(69);
+    InsertAtBegin(70);
+    InsertAtBegin(71);
+    InsertAtBegin(72);
+    InsertAtBegin(73);
+    InsertAtBegin(74);
+    InsertAtBegin(75);
+    InsertAtBegin(76);
+    InsertAtBegin(77);
+    InsertAtBegin(78);
+    InsertAtBegin(79);
+    InsertAtBegin(80);
+    InsertAtBegin(81);
+    InsertAtBegin(82);
+    InsertAtBegin(83);
+    InsertAtBegin(84);
+    InsertAtBegin(85);
+    InsertAtBegin(86);
+    InsertAtBegin(87);
+    InsertAtBegin(88);
+    InsertAtBegin(89);
+    InsertAtBegin(90);
+    InsertAtBegin(91);
+    InsertAtBegin(92);
+    InsertAtBegin(93);
+    InsertAtBegin(94);
+    InsertAtBegin(95);
+    InsertAtBegin(96);
+    InsertAtBegin(97);
+    InsertAtBegin(98);
+    InsertAtBegin(99);
+    InsertAtBegin(100);
+    Display();
+    DeleteAtBegin();
+    DeleteAtEnd();
+    DeletenthNode(5);
+    Display();
+}
 
-        switch (ch) {
-            case 1:
-                printf("\nEnter value to be inserted: ");
-                int v1;
-                scanf("%d",&v1);
-                InsertAtBegin(v1);
-                break;
-            case 2:
-                printf("\nEnter position to insert value: ");
-                int v2 , pos1;
-                scanf("%d",&pos1);
-                printf("Enter value to be inserted: ");
-                scanf("%d",&v2);
-                InsertAtnthNode(pos1 , v2);
-                break;
-            case 3:
-                printf("\nEnter value to insert at end: ");
-                int v3;
-                scanf("%d",&v3);
-                InsertAtEnd(v3);
-                break;
-            case 4:
-                DeleteAtBegin();
-                break;
-            case 5:
-                DeleteAtEnd();
-                break;
-            case 6:
-                printf("\nEnter position to delete element: ");
-                int pos2;
-                scanf("%d",&pos2);
-                DeletenthNode(pos2);
-                break;
-            case 7:
-                Display();
-                break;
-            case 8:
-                printf("\n\t**THANK YOU!**\n");
-                exit(0);
-            default: 
-                printf("\n\t**Chose a valid option**\n"); 
-        }       
-    }
+int main() {
+    test();
+    return 0;
 }
